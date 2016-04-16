@@ -4,6 +4,17 @@ public class MaquinaNorma {
     
     private int[] registradores = new int[4];
     
+    public MaquinaNorma(int A, int B, int C, int D) {
+        this.registradores[0] = A;
+        this.registradores[1] = B;
+        this.registradores[2] = C;
+        this.registradores[3] = D;
+    }
+    
+    public int get(char registrador) {
+        return this.registradores[this.posicao(registrador)];
+    }
+    
     public void add(char registrador){
         this.registradores[this.posicao(registrador)] += 1;
     }

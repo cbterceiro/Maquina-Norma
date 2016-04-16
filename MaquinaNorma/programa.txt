@@ -1,0 +1,5 @@
+1: ADD A 2
+2: ADD B 3
+3: ADD C 4
+4: SUB D 5
+5: ZER D 6 1
