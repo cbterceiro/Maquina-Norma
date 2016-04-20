@@ -8,7 +8,6 @@ public class UsoMaquinaNorma {
     
     public UsoMaquinaNorma(int A, int B, int C, int D) {
         this.maquina = new MaquinaNorma(A, B, C, D);
-        this.programa = new ArrayList<>();
     }
     
     public void setPrograma(ArrayList<String> programa) {
@@ -16,35 +15,27 @@ public class UsoMaquinaNorma {
     }
     
     public void executar() {
-        int instrucaoAtual = 0;
+        int instrucao = 0;
         
-        imprimeEstadoAtual(-1);
-	while (existeInstrucao(instrucaoAtual)) {
-            imprimeEstadoAtual(instrucaoAtual);
-            instrucaoAtual = executarInstrucao(instrucaoAtual);
-	}
-        imprimeEstadoAtual(instrucaoAtual);
-        
+        System.out.println("Estado inicial: " + getEstadoAtualMaquina());
+	while (existeInstrucao(instrucao)) {
+            System.out.println(getEstadoAtualMaquina() + " " + getTextoInstrucao(instrucao));
+            instrucao = executarInstrucao(instrucao);
+	} 
+        System.out.println("Estado final: " + getEstadoAtualMaquina());
     }
     
     private boolean existeInstrucao(int instrucao) {
         return (instrucao >= 0 && instrucao < programa.size());
     }
-    
-    private void imprimeEstadoAtual(int instrucaoAtual) {
-        String s;
-        
-        if (existeInstrucao(instrucaoAtual))
-            s = getTextoInstrucao(instrucaoAtual);
-        else
-            s = "";
-        
-        System.out.println("((" +
+ 
+    private String getEstadoAtualMaquina() {
+        return "(" +
                 maquina.get('A') + ", " +
                 maquina.get('B') + ", " +
                 maquina.get('C') + ", " +
                 maquina.get('D') +
-            "), "+ (instrucaoAtual+1) +") " + s);
+            ")";
     }
     
     private int executarInstrucao(int instrucao) {
@@ -92,13 +83,13 @@ public class UsoMaquinaNorma {
         
         switch (partes[1]) {
             case "ADD":
-                s = "FACA " + partes[1] + " (" + partes[2] + ") VA_PARA " + partes[3];
+                s = "FACA " + partes[1] + "(" + partes[2] + ") VA_PARA " + partes[3];
                 break;
             case "SUB":
-                s = "FACA " + partes[1] + " (" + partes[2] + ") VA_PARA " + partes[3];
+                s = "FACA " + partes[1] + "(" + partes[2] + ") VA_PARA " + partes[3];
                 break;
             case "ZER":
-                s = "SE " + partes[1] + " (" + partes[2] + ") ENTAO VA_PARA " + partes[3] + " SENAO VA_PARA " + partes[4];
+                s = "SE " + partes[1] + "(" + partes[2] + ") ENTAO VA_PARA " + partes[3] + " SENAO VA_PARA " + partes[4];
                 break;
             default:
                 throw new IllegalArgumentException("Instrução inválida!");
