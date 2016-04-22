@@ -58,8 +58,8 @@ public class Principal {
                         programa = leitora.lerArquivo("multiplicacao caso 2.txt");
                         break;
                     case "6":
-                        throw new Exception("Este método ainda não foi implementado.");
-                        //break;
+                        programa = leitora.lerArquivo("fatorial.txt");
+                        break;
                     case "7":
                         programa = leitora.lerArquivo("programa.txt");
                         break;
